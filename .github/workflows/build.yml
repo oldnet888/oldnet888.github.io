@@ -4,7 +4,7 @@ name: Build Dev
 
 on:
   push:
-    branch:
+    branches:
       - dev
       - master
 
@@ -53,5 +53,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3.1.4
         with:
-          名字: Home
+          name: Home
           path: dist
