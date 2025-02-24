@@ -14,12 +14,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      # 清理缓存
-      - name: Clear Runner Cache
-        run: |
-          npm cache clean --force
-          npm install -g npm@latest
-      
       # 检出 Git 仓库
       - name: Check out git repository
         uses: actions/checkout@v4.1.1
