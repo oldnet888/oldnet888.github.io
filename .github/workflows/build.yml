@@ -14,14 +14,22 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      # 清理缓存
+      - 名字: Clear Runner Cache
+        run: |
+          npm cache clean --force
+          npm install -g npm@latest
+      
       # 检出 Git 仓库
       - 名字: Check out git repository
         uses: actions/checkout@v4.1.1
+      
       # 安装 Node.js
       - 名字: Install Node.js
         uses: actions/setup-node@v4.0.0
         with:
           node-version: "18.x"
+      
       # 复制环境变量文件
       - 名字: Copy .env.example
         run: |
@@ -30,16 +38,19 @@ jobs:
           } else {
             Write-Host ".env file already exists. Skipping the copy step."
           }
+      
       # 安装项目依赖
       - 名字: Install Dependencies
         run: npm install
+      
       # 构建程序
       - 名字: Build Website
         run: npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      
       # 上传构建产物
-      - name: Upload artifact
+      - 名字: Upload artifact
         uses: actions/upload-artifact@v3.1.4
         with:
           名字: Home
