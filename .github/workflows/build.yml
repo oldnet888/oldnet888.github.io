@@ -47,5 +47,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          名字: Home
+          name: Home
           path: dist
